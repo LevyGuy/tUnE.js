@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Speech Recognition Test</title>
+        <meta charset="utf-8">
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        
+        <div id="prefix-indicator"></div>
+        <div id="box"></div>
+        
+<script>
+    var indicator = document.getElementById("prefix-indicator"),
+    box = document.getElementById("box"),
+    movePx = 200;
+
+    var speechObj = new webkitSpeechRecognition;
+    speechObj.continuous = true;
+    speechObj.interimResults = false;
+
+    // Result input
+    speechObj.onresult = function(ev){
+
+        console.log("Results in:", (performance.now() / 1000).toFixed(3) );
+
+        var results = ev.results[ev.results.length-1][0].transcript;
+        console.log("Results:", results);
+        console.log("Confidence: " +  ev.results[ev.results.length-1][0].confidence);
+
+        switch(results)
+        {
+            case "red cube":
+                console.log("red cube init");
+                indicator.style.opacity = "1";
+                break;            
+            case "i'm done":
+                console.log("done");
+                speechObj.abort();
+                break;
+            case "move left":
+                console.log("moving left");
+                box.style.left = box.offsetLeft - movePx + "px";
+                break;
+            case "move right":
+                console.log("moving right");
+                box.style.left = box.offsetLeft + movePx + "px"; 
+                break;
+            case "move up":
+                console.log("moving up");
+                box.style.top = box.offsetTop - movePx + "px";
+                break;
+            case "move down":
+                console.log("moving down");
+                box.style.top = box.offsetTop + movePx + "px"; 
+                break;                
+        }
+
+    };
+
+
+    speechObj.onerror = function(ev){
+        console.log("on error");
+    };
+    speechObj.onnomatch = function(ev){
+        console.log("on no match");
+    };
+
+    speechObj.start();
+
+</script>
+        
+    </body>
+</html>

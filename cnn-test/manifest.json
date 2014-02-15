@@ -1,0 +1,14 @@
+{
+    "manifest_version": 2,
+    "name": "Speech recognition CNN Test",
+    "version": "0.1",
+    "description": "",
+    
+    "content_scripts": [{
+        "matches": ["*://*.cnn.com/*"],
+        "js": [
+            "tUnE.js",
+            "cnn-test.js"
+        ]
+    }]
+}

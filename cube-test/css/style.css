@@ -1,0 +1,30 @@
+*{ margin: 0; padding: 0; }
+#prefix-indicator {
+    position: fixed;
+    top: -60px;
+    right: -60px;
+    width: 150px;
+    height: 150px;
+    background: url("../img/microphonehot.png") no-repeat center center / 80px;
+    border: 2em solid rgba(143, 188, 143, 0.6);
+    border-radius: 50%;
+    opacity: 0;
+    -webkit-transition: all .5s;
+}
+#prefix-indicator:after {
+    content: "";
+    display: block;
+    
+    border: 10px solid darkseagreen;
+    border-radius: 50%;
+}
+#box {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    -webkit-transition: all .8s ease-out;
+}
+

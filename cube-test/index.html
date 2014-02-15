@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Speech Recognition Test</title>
+        <meta charset="utf-8">
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        
+        <div id="prefix-indicator"></div>
+        
+        <div id="box"></div>
+        
+        <script src="../src/tUnE.js"></script>
+        <script>
+            var indicator = document.getElementById("prefix-indicator"),
+                box = document.getElementById("box"),
+                movePx = 200;
+            
+            tUnE({
+                
+                prefix: "red cube",
+                prefixConfidence: 7,
+                
+                interimResults: false,
+                
+                prefixCallback: function (){
+                    indicator.style.opacity = "1";
+                },
+                doneOperation: function (){
+                    indicator.style.opacity = "0";
+                },
+                        
+                confidence: 5,
+                        
+                operations: [
+                    {
+                        say: "move left",
+                        exec: function(){
+                            console.log("results in:", (performance.now() / 1000).toFixed(3) );
+                            console.log("moving left");
+                            box.style.left = box.offsetLeft - movePx + "px";
+                        }
+                    },
+                    {
+                        say: "move right",
+                        exec: function(){
+                            console.log("results in:", (performance.now() / 1000).toFixed(3) );
+                            console.log("moving right");
+                            box.style.left = box.offsetLeft + movePx + "px";
+                        }
+                    },
+                    {
+                        say: "move up",
+                        exec: function(){
+                            console.log("results in:", (performance.now() / 1000).toFixed(3) );
+                            console.log("moving up");
+                            box.style.top = box.offsetTop - movePx + "px";
+                        }
+                    },
+                    {
+                        say: "move down",
+                        exec: function(){
+                            console.log("results in:", (performance.now() / 1000).toFixed(3) );
+                            console.log("moving down");
+                            box.style.top = box.offsetTop + movePx + "px";
+                        }
+                    },
+                    {
+                        say: "i'm done",
+                        exec: function(){
+                            console.log("results in:", (performance.now() / 1000).toFixed(3) );
+                            console.log("i'm done !");
+                            tUnE.reInit();
+                        }
+                    }                            
+                ]
+                
+                
+            });
+            
+        </script>
+        
+    </body>
+</html>
