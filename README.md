@@ -15,7 +15,10 @@ The app will pass an array of strings and the admissible distance between each s
 I've created a little “cube test” to test the results.
 The first test can be viewed here: http://youtu.be/SrXxLkWRf8A
 it compares the results between 
+
+
 1. a cube with the grammar plugin with no intrim results
+
 2. a cube with the grammar plugin with intrim results
 
 
